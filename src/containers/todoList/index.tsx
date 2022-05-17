@@ -29,14 +29,14 @@ function TodoList() {
     return (
         <StyledTodoList>
             <h2>RadiFlow Todo List</h2>
-            <NewTodo setTodos={setTodos}/>
+            <NewTodo setTodos={setTodos} />
             <Divider />
             <List
                 dataSource={todos}
                 renderItem={item => {
                     return (
                         <List.Item>
-                            <Todo id={item.id} description={item.description} />
+                            <Todo todoItem={item} setTodos={setTodos} />
                         </List.Item>)
                 }}
             />

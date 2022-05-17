@@ -2,20 +2,21 @@ import React from 'react';
 import { Button } from 'antd';
 import { DeleteOutlined } from '@ant-design/icons';
 import axiosInstance from '../../utils/axiosInstance';
-import { Todo as TodoType } from '../../types/types';
+import { Todo as TodoType, TodoArray } from '../../types/types';
 import { StyledTodo } from './styled';
 
-function Todo({ id, description } : TodoType) {
+function Todo({ todoItem, setTodos } : { todoItem: TodoType, setTodos: any }) {
     
+    const { description, id } = todoItem;
+
     const deleteTodo = async (id: string) => {
         try {
             const deletedTodoResponse = await axiosInstance.delete(`/todos/${id}`);
-            if(deletedTodoResponse.data) {
-
+            if(deletedTodoResponse.status === 204) {
+                setTodos((todoState : TodoArray) => todoState.filter((curr : TodoType) => curr.id !== id));
             }
-            console.log(deletedTodoResponse.data)
         } catch (error) {
-
+            console.log(error);
         }
     }
 
