@@ -28,8 +28,7 @@ function NewTodo({ setTodos }: { setTodos: any }) {
                 value={todoValue}
                 onChange={e => setTodoValue(e.target.value)}
                 size="large"
-                placeholder="large size"
-                prefix={<PlusCircleOutlined />}
+                placeholder="new task description"
             />
             <Button
                 disabled={!todoValue.length}
